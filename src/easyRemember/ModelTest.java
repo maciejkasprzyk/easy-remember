@@ -1,0 +1,10 @@
+package easyRemember;
+
+
+
+
+
+class ModelTest {
+	
+	
+}
