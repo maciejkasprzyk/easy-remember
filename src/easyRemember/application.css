@@ -1,0 +1,22 @@
+#story {
+    -fx-padding: 4px ;
+
+}
+
+
+#story .list-cell{
+	-fx-background-color: #dbedff;
+	-fx-background-radius: 10px;
+	-fx-padding: 5px;
+    -fx-background-insets: 2px;
+}  
+
+#story .list-cell:empty{
+	visibility: hidden ;
+	-fx-background-color: transparent ;
+}
+ 
+.list-cell:empty{
+	visibility:hidden;
+	-fx-background-color: transparent ;
+}

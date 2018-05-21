@@ -2,86 +2,17 @@ package easyRemember;
 
 public class WordRecord implements Comparable<WordRecord> {
 
-	
-	
-
 	private String key;
 	private String word;
 
 	WordRecord(String word) {
-		this.word = word;
+		this.word = word.replaceAll(" .*", "");
 		calculateKey();
 	}
 
-	private void calculateKey() {
-		key = new String();
-		key.toLowerCase();
-		char previous = 'a';
-		for (int i = 0, n = word.length(); i < n; i++) {
-			char c = word.charAt(i);
+	public static String wordToKey(String word) {
 
-			char next;
-			if (i + 1 < n)
-				next = word.charAt(i + 1);
-			else
-				next = 'a';
-
-			switch (c) {
-
-			case 'z':
-				if (previous == 's' || previous == 'c' || previous == 'd' || previous == 'r')
-					break;
-			case 's':
-				key = key + "0";
-				break;
-
-			case 'd':
-				if (next == 'z')
-					break;
-			case 't':
-				key = key + "1";
-				break;
-
-			case 'n':
-			case 'ń':
-				key = key + "2";
-				break;
-
-			case 'm':
-				key = key + "3";
-				break;
-
-			case 'r':
-				if (next == 'z')
-					break;
-				key = key + "4";
-				break;
-
-			case 'l':
-				key = key + "5";
-				break;
-			case 'j':
-				key = key + "6";
-				break;
-
-			case 'k':
-			case 'g':
-				key = key + "7";
-				break;
-
-			case 'f':
-			case 'w':
-				key = key + "8";
-				break;
-
-			case 'p':
-			case 'b':
-				key = key + "9";
-				break;
-			}
-			previous = c;
-		}
-		return;
+		return new WordRecord(word).getKey();
 	}
 
 	@Override
@@ -91,7 +22,7 @@ public class WordRecord implements Comparable<WordRecord> {
 		if (key.length() > other.key.length())
 			return 1;
 		int keyComp = key.compareTo(other.key);
-		if(keyComp != 0)
+		if (keyComp != 0)
 			return keyComp;
 		else
 			return word.compareTo(other.word);
@@ -129,7 +60,87 @@ public class WordRecord implements Comparable<WordRecord> {
 
 	@Override
 	public String toString() {
-		return "WordRecord [key=" + key + ", word=" + word + "]";
+		return word + " " + key;
+	}
+
+	private void calculateKey() {
+		key = new String();
+		key.toLowerCase();
+		char previous = 'a';
+		for (int i = 0, n = word.length(); i < n; i++) {
+			char c = word.charAt(i);
+
+			char next;
+			if (i + 1 < n)
+				next = word.charAt(i + 1);
+			else
+				next = 'a';
+
+			switch (c) {
+
+			case 'z':
+				if (previous == 's' || previous == 'c' || previous == 'd' || previous == 'r')
+					break;
+				key = key + '0';
+				break;
+			case 's':
+				if (next == 'z')
+					break;
+				key = key + "0";
+				break;
+
+			case 'd':
+				if (next == 'z' || next == 'ź' || next == 'ż')
+					break;
+			case 't':
+				key = key + "1";
+				break;
+
+			case 'n':
+			case 'ń':
+				key = key + "2";
+				break;
+
+			case 'm':
+			case 'h':
+				key = key + "3";
+				break;
+
+			case 'r':
+				if (next == 'z')
+					break;
+				key = key + "4";
+				break;
+
+			case 'l':
+				key = key + "5";
+				break;
+
+			case 'c':
+				if (next == 'z' || next == 'h')
+					break;
+			case 'j':
+				key = key + "6";
+				break;
+
+			case 'k':
+			case 'g':
+				key = key + "7";
+				break;
+
+			case 'f':
+			case 'w':
+				key = key + "8";
+				break;
+
+			case 'p':
+			case 'b':
+				key = key + "9";
+				break;
+			}
+			previous = c;
+		}
+		return;
 	}
 
 }

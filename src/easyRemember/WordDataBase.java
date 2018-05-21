@@ -1,16 +1,27 @@
 package easyRemember;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class WordDataBase {
+
+	// <key , list of word records(word,key)>
 	private Map<String, List<WordRecord>> map;
 
 	public WordDataBase() {
 		super();
-		map = new HashMap<String, List<WordRecord>>();
+		map = new HashMap<>();
 	}
-	
+
 	public void addNewWord(String word) {
 		WordRecord wordRecord = new WordRecord(word);
 
@@ -24,6 +35,17 @@ public class WordDataBase {
 		}
 	}
 
+	public boolean contains(String word) {
+
+		WordRecord wordRecord = new WordRecord(word);
+		List<WordRecord> list = map.get(wordRecord.getKey());
+		if (list != null) {
+			if (list.contains(wordRecord))
+				return true;
+		}
+		return false;
+	}
+
 	public List<WordRecord> getAllRecords() {
 		List<WordRecord> result = new ArrayList<>();
 		for (List<WordRecord> list : map.values()) {
@@ -35,7 +57,6 @@ public class WordDataBase {
 		return result;
 	}
 
-	
 	public List<WordRecord> getRecordsByKey(String key) {
 		if (map.get(key) == null)
 			return null;
@@ -51,7 +72,7 @@ public class WordDataBase {
 
 		try {
 			// FileReader reads text files in the default encoding.
-			FileReader fileReader = new FileReader(fileName);
+			FileReader fileReader = new FileReader("dataBase/" + fileName);
 
 			// Always wrap FileReader in BufferedReader.
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -96,5 +117,10 @@ public class WordDataBase {
 		} catch (IOException ex) {
 			System.err.println(ex);
 		}
+	}
+
+	public void deleteWord(String toDelete) {
+		String key = WordRecord.wordToKey(toDelete);
+		map.get(key).remove(new WordRecord(toDelete));
 	}
 }

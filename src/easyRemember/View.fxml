@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane prefHeight="535.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easyRemember.Controller">
+   <children>
+      <VBox prefHeight="535.0" prefWidth="539.0">
+         <children>
+            <TabPane prefHeight="512.0" prefWidth="637.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Nauka">
+                  <content>
+                        <BorderPane layoutX="-34.0" layoutY="14.0" prefHeight="479.0" prefWidth="526.0">
+                           <bottom>
+                              <AnchorPane prefHeight="64.0" prefWidth="588.0">
+                                 <children>
+                                    <Text layoutX="14.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wygenerowana historyjka:" wrappingWidth="224.46875" />
+                                    <ListView id="story" fx:id="storyListView" layoutX="12.0" layoutY="21.0" orientation="HORIZONTAL" prefHeight="38.0" prefWidth="487.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="21.0" BorderPane.alignment="CENTER" />
+                                 </children>
+                              </AnchorPane>
+                           </bottom>
+                           <right>
+                              <AnchorPane prefHeight="335.0" prefWidth="240.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <ListView fx:id="candidatesListView" layoutY="67.0" onMouseClicked="#candidatesListView_OnMouseClicked" prefHeight="270.0" prefWidth="240.0" />
+                                    <Text layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wybierz następne słowo:" />
+                                 </children>
+                              </AnchorPane>
+                           </right>
+                           <left>
+                            <AnchorPane BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Text layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wpisz liczbę, której chcesz się nauczyć:" wrappingWidth="188.0" />
+                                    <TextField fx:id="processedTextField" layoutY="42.0" onAction="#processedTextField_OnAction" prefHeight="25.0" prefWidth="200.0" promptText="Wpisz liczbę..." />
+                                    <Text fx:id="processedNumberText" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="189.0" />
+                                 </children>
+                              </AnchorPane>
+                           </left>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </BorderPane>
+                  </content>
+                </Tab>
+                <Tab text="Baza danych">
+                     <content>
+                        <BorderPane prefHeight="431.0" prefWidth="587.0">
+                           <left>
+                              <AnchorPane prefHeight="362.0" prefWidth="214.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <TextField fx:id="addNewWordTextField" layoutY="42.0" onAction="#addNewWordTextField_OnAction" prefHeight="25.0" prefWidth="200.0" promptText="Wpisz nowe słowo..." />
+                                    <Text layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj nowe słowo do bazy:" />
+                                 </children>
+                              </AnchorPane>
+                           </left>
+                           <right>
+                          <AnchorPane prefHeight="389.0" prefWidth="240.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <ListView fx:id="allWordsListView" layoutY="67.0" prefHeight="358.0" prefWidth="240.0" />
+                                    <Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista wszystkich słów:" wrappingWidth="142.7080078125" />
+                                    <Button layoutX="189.0" layoutY="31.0" mnemonicParsing="false" onAction="#deleteButton_OnAction" text="Usuń" />
+                                 </children>
+                              </AnchorPane>
+                           </right>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </BorderPane>
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+            <Pane prefHeight="24.0" prefWidth="587.0" style="-fx-background-color: #ddd;">
+               <children>
+                  <Text fx:id="actionText" fill="#464646" layoutX="17.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="506.0" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
