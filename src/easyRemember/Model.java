@@ -10,28 +10,71 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
+ * Class which changes the given number into a story of words. It uses
+ * WordDataBase class to get the words.
+ * 
  * @author Maciej Kasprzyk
  *
  */
 public class Model {
 
 	private WordDataBase wordDataBase = new WordDataBase();
+
+	public WordDataBase getWordDataBase() {
+		return wordDataBase;
+	}
+
+	/**
+	 * Number for which the story is being generated.
+	 */
 	private String processedNumber;
+	/**
+	 * Which match next digits in the processed number
+	 */
 	private List<WordRecord> candidates = new ArrayList<>();
+
+	/**
+	 * Returns list of words which match next digits in the processed number.
+	 * 
+	 * @return List of wordRecors that match next digits in the processed number.
+	 */
+	public List<WordRecord> getCandidates() {
+		return candidates;
+	}
+
 	private List<WordRecord> story = new ArrayList<>();
-	private Controller view;
+
+	/**
+	 * Returns chosen part of the story.
+	 * 
+	 * @return List of WordRecords in the story.
+	 */
+	public List<WordRecord> getCurrentStory() {
+		return story;
+	}
+
+	private Controller controller;
 
 	public Model(Controller view) {
 		super();
-		this.view = view;
+		this.controller = view;
 
 	}
 
-	public void chooseCandidate(int n) throws IndexOutOfBoundsException {
+	/**
+	 * Use it to pick a next word in a story. Words can be chosen among candidates
+	 * on the list candidates list.
+	 * 
+	 * @param index
+	 *            Index of chosen candidate on the candidates list.
+	 * @throws IndexOutOfBoundsException
+	 *             Throws when there's no candidate with given index.
+	 */
+	public void chooseCandidate(int index) throws IndexOutOfBoundsException {
 		try {
 			if (candidates == null)
 				throw new IndexOutOfBoundsException();
-			WordRecord choosen = candidates.get(n);
+			WordRecord choosen = candidates.get(index);
 			story.add(choosen);
 
 			int begin = choosen.getKey().length();
@@ -41,30 +84,31 @@ public class Model {
 		} catch (IndexOutOfBoundsException e) {
 			throw e;
 		}
-		view.refresh();
+		controller.refresh();
 		return;
 	}
 
-	public List<WordRecord> getCandidates() {
-		return candidates;
-	}
+	/**
+	 * Starts new story.
+	 * 
+	 * @param newNumberToLearn
+	 *            Number which you want to remember.
+	 */
+	public void startNewStory(String newNumberToLearn) {
 
-	public List<WordRecord> getCurrentStory() {
-		return story;
-	}
-
-	public void startNewStory(String processed) {
-
-		this.processedNumber = processed;
+		this.processedNumber = newNumberToLearn;
 		story = new ArrayList<>();
 		calculateCandidates();
-		view.refresh();
+		controller.refresh();
 	}
 
-	public WordDataBase getWordDataBase() {
-		return wordDataBase;
-	}
-
+	/**
+	 * Converts List of words to ObervableList of strings.
+	 * 
+	 * @param in
+	 *            List of word records to be converted.
+	 * @return Converted list of ObservableList type.
+	 */
 	public static ObservableList<String> recordsToStringObservableList(List<WordRecord> in) {
 		ObservableList<String> out = FXCollections.observableArrayList();
 		for (WordRecord item : in) {
@@ -74,34 +118,43 @@ public class Model {
 
 	}
 
-	private void addCandidatesOfGivenLenght(int n) {
+	/**
+	 * Add candidates of given key length to the list of candidates.
+	 * 
+	 * @param length
+	 *            Length of the key.
+	 */
+	private void addCandidatesOfGivenLength(int length) {
 		String key;
-		if (processedNumber.length() >= n) {
-			key = processedNumber.substring(0, n);
+		if (processedNumber.length() >= length) {
+			key = processedNumber.substring(0, length);
 		} else
 			return;
 		List<WordRecord> list = wordDataBase.getRecordsByKey(key);
-	
+
 		if (list == null)
 			return;
-	
+
 		for (WordRecord item : list) {
 			candidates.add(item);
 		}
 		return;
 	}
 
+	/**
+	 * Calculates list of candidates for the number stored.
+	 */
 	private void calculateCandidates() {
 		candidates = new ArrayList<>();
-		addCandidatesOfGivenLenght(7);
-		addCandidatesOfGivenLenght(6);
-		addCandidatesOfGivenLenght(5);
-		addCandidatesOfGivenLenght(4);
-		addCandidatesOfGivenLenght(3);
-		addCandidatesOfGivenLenght(2);
-		addCandidatesOfGivenLenght(1);
-	
-		view.refresh();
+		addCandidatesOfGivenLength(7);
+		addCandidatesOfGivenLength(6);
+		addCandidatesOfGivenLength(5);
+		addCandidatesOfGivenLength(4);
+		addCandidatesOfGivenLength(3);
+		addCandidatesOfGivenLength(2);
+		addCandidatesOfGivenLength(1);
+
+		controller.refresh();
 		return;
 	}
 

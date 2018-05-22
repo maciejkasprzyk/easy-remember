@@ -6,8 +6,19 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+/**
+ * Class responsible for refreshing the view and interpreting user input.
+ * 
+ * @author Maciej Kasprzyk
+ *
+ */
 public class Controller {
+
 	private Model model;
+
+	public void setModel(Model model) {
+		this.model = model;
+	}
 
 	@FXML
 	private ListView<String> candidatesListView;
@@ -24,6 +35,11 @@ public class Controller {
 	@FXML
 	private Text processedNumberText;
 
+	/**
+	 * @param word
+	 *            Word to be checked
+	 * @return True of false whether the word consists only from letters.
+	 */
 	private static boolean isWord(String word) {
 		word.toLowerCase();
 		for (int i = 0, n = word.length(); i < n; i++) {
@@ -37,6 +53,11 @@ public class Controller {
 		return true;
 	}
 
+	/**
+	 * @param number
+	 *            Number to be checked
+	 * @return True of false whether the number consists only from digits.
+	 */
 	private static boolean isNumber(String number) {
 		for (int i = 0, n = number.length(); i < n; i++) {
 			char c = number.charAt(i);
@@ -48,6 +69,9 @@ public class Controller {
 		return true;
 	}
 
+	/**
+	 * Refresh the view with data from the model.
+	 */
 	public void refresh() {
 
 		// update candidates
@@ -65,10 +89,10 @@ public class Controller {
 		return;
 	}
 
-	public void setModel(Model model) {
-		this.model = model;
-	}
-
+	/**
+	 * Handles the choose of next word in the story. Triggered by pressing a word on
+	 * candidates list.
+	 */
 	public void candidatesListView_OnMouseClicked() {
 		int selectedIndex = candidatesListView.getSelectionModel().getSelectedIndex();
 		try {
@@ -81,6 +105,10 @@ public class Controller {
 		return;
 	}
 
+	/**
+	 * Handles the start of new story. Triggered by pressing enter in the
+	 * processedTextField.
+	 */
 	public void processedTextField_OnAction() {
 		String processed = processedTextField.getText();
 		processed = processed.replaceAll(" ", "");
@@ -96,6 +124,10 @@ public class Controller {
 		}
 	}
 
+	/**
+	 * Handles the adding a new word to the database. Triggered by pressing enter in
+	 * addNewWordTextField.
+	 */
 	public void addNewWordTextField_OnAction() {
 		String newWord = addNewWordTextField.getText();
 		System.out.println(newWord);
@@ -114,10 +146,14 @@ public class Controller {
 			actionText.setText("Słowo " + newWord + " nie jest poprawne.");
 			addNewWordTextField.setText("");
 		}
- 
+
 		return;
 	}
 
+	/**
+	 * Handles the delete of word in the data base. Triggered by clicking on delete
+	 * button.
+	 */
 	public void deleteButton_OnAction() {
 
 		String toDelete = allWordsListView.getSelectionModel().getSelectedItem();

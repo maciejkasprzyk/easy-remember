@@ -1,5 +1,8 @@
-#backupfiles 
+#backup files 
 /dataBase/backups/
+
+#documentation
+/doc/
 
 # Compiled class file
 *.class

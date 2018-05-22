@@ -56,6 +56,50 @@
                                  <children>
                                     <TextField fx:id="addNewWordTextField" layoutY="42.0" onAction="#addNewWordTextField_OnAction" prefHeight="25.0" prefWidth="200.0" promptText="Wpisz nowe słowo..." />
                                     <Text layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj nowe słowo do bazy:" />
+                                    <GridPane layoutX="6.0" layoutY="76.0" prefHeight="345.0" prefWidth="91.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.0" minWidth="10.0" prefWidth="45.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="66.0" minWidth="10.0" prefWidth="46.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                          <RowConstraints />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.rowIndex="2" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.rowIndex="3" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2" GridPane.rowIndex="4" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" GridPane.rowIndex="5" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="4" GridPane.rowIndex="6" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="5" GridPane.rowIndex="7" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="6" GridPane.rowIndex="8" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="7" GridPane.rowIndex="9" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8" GridPane.rowIndex="10" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="9" GridPane.rowIndex="11" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="z,s" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="n,ń" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="m,h" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="r" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="l" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="j,c" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="k,g" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="f,w" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="p,b" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cyfra" GridPane.rowIndex="1" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Głoska" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="t,d" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                       </children>
+                                    </GridPane>
                                  </children>
                               </AnchorPane>
                            </left>

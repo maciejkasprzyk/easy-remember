@@ -8,10 +8,20 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * Main class responsible for instantiating MVC, and initializing the JavaFX.
+ * 
+ * @author Maciej Kasprzyk
+ */
 public class Main extends Application {
 	private Model model;
 	private Controller controller;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -35,6 +45,11 @@ public class Main extends Application {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javafx.application.Application#stop()
+	 */
 	@Override
 	public void stop() {
 		model.getWordDataBase().saveFile("EasyWords.txt");

@@ -1,5 +1,10 @@
 package easyRemember;
 
+/**
+ * Class which represent a record of word and a key of this word.
+ * 
+ * @author Maciej Kasprzyk
+ */
 public class WordRecord implements Comparable<WordRecord> {
 
 	private String key;
@@ -7,65 +12,18 @@ public class WordRecord implements Comparable<WordRecord> {
 
 	WordRecord(String word) {
 		this.word = word.replaceAll(" .*", "");
-		calculateKey();
+		this.word.toLowerCase();
+		key = wordToKey(this.word);
 	}
 
+	/**
+	 * @param word
+	 *            Word to for which the key will be generated.
+	 * @return The key generated for the given word.
+	 */
 	public static String wordToKey(String word) {
 
-		return new WordRecord(word).getKey();
-	}
-
-	@Override
-	public int compareTo(WordRecord other) {
-		if (key.length() < other.key.length())
-			return -1;
-		if (key.length() > other.key.length())
-			return 1;
-		int keyComp = key.compareTo(other.key);
-		if (keyComp != 0)
-			return keyComp;
-		else
-			return word.compareTo(other.word);
-	}
-
-	public String getKey() {
-		return key;
-	}
-
-	public String getWord() {
-		return word;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		WordRecord other = (WordRecord) obj;
-		if (key == null) {
-			if (other.key != null)
-				return false;
-		} else if (!key.equals(other.key))
-			return false;
-		if (word == null) {
-			if (other.word != null)
-				return false;
-		} else if (!word.equals(other.word))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return word + " " + key;
-	}
-
-	private void calculateKey() {
-		key = new String();
-		key.toLowerCase();
+		String key = new String();
 		char previous = 'a';
 		for (int i = 0, n = word.length(); i < n; i++) {
 			char c = word.charAt(i);
@@ -140,7 +98,54 @@ public class WordRecord implements Comparable<WordRecord> {
 			}
 			previous = c;
 		}
-		return;
+		return key;
 	}
 
+	@Override
+	public int compareTo(WordRecord other) {
+		if (key.length() < other.key.length())
+			return -1;
+		if (key.length() > other.key.length())
+			return 1;
+		int keyComp = key.compareTo(other.key);
+		if (keyComp != 0)
+			return keyComp;
+		else
+			return word.compareTo(other.word);
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public String getWord() {
+		return word;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		WordRecord other = (WordRecord) obj;
+		if (key == null) {
+			if (other.key != null)
+				return false;
+		} else if (!key.equals(other.key))
+			return false;
+		if (word == null) {
+			if (other.word != null)
+				return false;
+		} else if (!word.equals(other.word))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return word + " " + key;
+	}
 }
